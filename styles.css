@@ -65,7 +65,15 @@ h1 em { color: var(--gold); font-style: normal; }
 
 .intro { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: end; padding: 95px 0; }
 h2 { margin: 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spacing: -.03em; }
-.intro > p { margin: 0; color: #5f5143; font-size: 17px; line-height: 1.8; }
+.intro > p { max-width: 530px; margin: 0; color: #6f5d4c; font-size: 17px; line-height: 1.8; }
+.feature-show { position: relative; display: grid; grid-template-columns: 1.35fr .65fr; min-height: 620px; color: #fff4df; background: #090706; overflow: hidden; }
+.feature-photos { position: relative; min-height: 620px; }
+.feature-photo { position: absolute; margin: 0; overflow: hidden; box-shadow: 0 22px 70px rgba(0,0,0,.45); }
+.feature-photo img { width: 100%; height: 100%; object-fit: cover; }
+.feature-photo-main { inset: 0 12% 0 0; }
+.feature-photo-detail { right: 0; bottom: 7%; width: 42%; height: 45%; border: 5px solid #d49b3f; }
+.feature-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(45px, 7vw, 100px); background: radial-gradient(circle at left, #351914, #0c0806 70%); }
+.feature-copy h2 { margin-bottom: 0; color: var(--gold); font-size: clamp(48px, 7vw, 102px); line-height: .92; }
 
 .schedule-section { padding: 92px 0 105px; color: #f8edd9; background: var(--ink); }
 .section-head { margin-bottom: 34px; }
@@ -121,6 +129,8 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .map-section { grid-template-columns: 1fr; }
   .map-image img { max-height: none; }
   .directions-grid { grid-template-columns: 1fr; }
+  .feature-show { grid-template-columns: 1fr; }
+  .feature-copy { min-height: 260px; }
 }
 
 @media (max-width: 680px) {
@@ -136,6 +146,10 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .button { margin-top: 22px; }
   .poster-frame { width: min(88%, 420px); margin: 20px auto 0; }
   .intro { grid-template-columns: 1fr; gap: 25px; padding: 70px 0; }
+  .feature-show, .feature-photos { min-height: 460px; }
+  .feature-photo-main { inset: 0; }
+  .feature-photo-detail { right: 5%; bottom: 5%; width: 45%; height: 38%; }
+  .feature-copy { min-height: 220px; padding: 55px 28px; }
   .schedule-section, .places { padding: 70px 0; }
   .tabs { width: 100%; }
   .tab { padding: 13px 7px; font-size: 12px; }
