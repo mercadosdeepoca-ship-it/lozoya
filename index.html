@@ -16,6 +16,7 @@
       <div class="nav-links">
         <a href="#programa">Programa</a>
         <a href="#plano">Plano</a>
+        <a href="#como-llegar">Cómo llegar</a>
       </div>
     </nav>
 
@@ -95,6 +96,29 @@
       <button class="map-image" id="map-image-button" aria-label="Ampliar plano del mercado">
         <img src="assets/plano.jpg" alt="Plano del mercado medieval de Buitrago del Lozoya">
       </button>
+    </section>
+
+    <section class="directions-section" id="como-llegar" aria-labelledby="directions-title">
+      <div class="wrap directions-grid">
+        <div class="directions-copy">
+          <p class="eyebrow dark">PREPARA TU VISITA</p>
+          <h2 id="directions-title">Cómo llegar</h2>
+          <p>Elige cómo vas a venir y Google Maps calculará la mejor ruta desde tu ubicación hasta Buitrago del Lozoya.</p>
+          <div class="route-links">
+            <a class="route-card" href="https://www.google.com/maps/dir/?api=1&amp;destination=Buitrago+del+Lozoya%2C+Madrid&amp;travelmode=driving" target="_blank" rel="noopener">
+              <span class="route-icon" aria-hidden="true">🚗</span>
+              <span><strong>Ir en coche</strong><small>Abrir ruta en Google Maps</small></span>
+            </a>
+            <a class="route-card" href="https://www.google.com/maps/dir/?api=1&amp;destination=Buitrago+del+Lozoya%2C+Madrid&amp;travelmode=transit" target="_blank" rel="noopener">
+              <span class="route-icon" aria-hidden="true">🚌</span>
+              <span><strong>Transporte público</strong><small>Consultar rutas y horarios</small></span>
+            </a>
+          </div>
+        </div>
+        <div class="google-map">
+          <iframe title="Mapa de Buitrago del Lozoya en Google Maps" src="https://www.google.com/maps?q=Buitrago+del+Lozoya%2C+Madrid&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
     </section>
   </main>
 

@@ -93,6 +93,18 @@ h2 { margin: 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spa
 .map-image { display: block; padding: 0; border: 0; overflow: hidden; cursor: zoom-in; background: #130c09; }
 .map-image img { width: 100%; height: 100%; max-height: 760px; object-fit: cover; object-position: center; transition: transform .4s ease; }
 .map-image:hover img { transform: scale(1.015); }
+.directions-section { padding: 100px 0; background: var(--paper); }
+.directions-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(35px, 6vw, 85px); align-items: center; }
+.directions-copy > p:not(.eyebrow) { max-width: 540px; color: #6e5f50; line-height: 1.75; }
+.route-links { display: grid; gap: 12px; margin-top: 30px; }
+.route-card { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 1px solid #d5c7ae; color: var(--ink); background: #f7eedb; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.route-card:hover { transform: translateY(-2px); border-color: var(--orange); box-shadow: 0 12px 30px rgba(55,32,17,.12); }
+.route-icon { display: grid; place-items: center; flex: 0 0 46px; height: 46px; border-radius: 50%; background: var(--gold); font-size: 22px; }
+.route-card strong, .route-card small { display: block; }
+.route-card strong { font-family: var(--serif); font-size: 15px; }
+.route-card small { margin-top: 5px; color: #7a6755; }
+.google-map { min-height: 480px; border: 8px solid #fff8e9; box-shadow: 0 22px 60px rgba(41,25,14,.2); background: #ddd0b8; }
+.google-map iframe { display: block; width: 100%; height: 480px; border: 0; }
 footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
 .footer-inner { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; letter-spacing: .06em; }
 .footer-inner strong { color: var(--gold); font-family: var(--serif); }
@@ -108,6 +120,7 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .place-grid { grid-template-columns: 1fr 1fr; }
   .map-section { grid-template-columns: 1fr; }
   .map-image img { max-height: none; }
+  .directions-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 680px) {
@@ -131,6 +144,8 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .place-grid { grid-template-columns: 1fr; }
   .place-grid article { min-height: 185px; }
   .map-copy { padding: 60px 28px; }
+  .directions-section { padding: 70px 0; }
+  .google-map, .google-map iframe { min-height: 390px; height: 390px; }
   .footer-inner { flex-direction: column; }
 }
 
