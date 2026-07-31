@@ -15,6 +15,7 @@
       <a class="brand" href="#inicio">BUITRAGO <span>MEDIEVAL</span></a>
       <div class="nav-links">
         <a href="#programa">Programa</a>
+        <a href="concurso.html">Concurso</a>
         <a href="#il-diabole">Fotos</a>
         <a href="#plano">Plano</a>
         <a href="#como-llegar">Cómo llegar</a>
@@ -24,7 +25,7 @@
     <div class="hero-grid wrap">
       <div class="hero-copy">
         <p class="eyebrow">XXIV FERIA MEDIEVAL</p>
-        <h1>La villa vuelve<br><em>al medievo</em></h1>
+        <h1>Un viaje<br><em>en el tiempo</em></h1>
         <p class="lead">Buitrago del Lozoya · Madrid<br>3, 4, 5 y 6 de septiembre de 2026</p>
 
         <section class="countdown-panel" aria-label="Cuenta atrás para la apertura">
@@ -54,6 +55,21 @@
         <h2 id="intro-title">Música, fuego y seres mágicos</h2>
       </div>
       <p>Pasacalles, bufones, cuentacuentos, acrobacias, gastronomía y espectáculos para recorrer una de las villas medievales mejor conservadas de Madrid.</p>
+    </section>
+
+    <section class="contest-teaser" aria-labelledby="contest-title">
+      <div class="wrap contest-teaser-grid">
+        <div class="contest-number" aria-hidden="true">5</div>
+        <div>
+          <p class="eyebrow">I CONCURSO FOTOGRÁFICO</p>
+          <h2 id="contest-title">Cinco miradas<br>al Medievo</h2>
+          <p>Cuenta la feria mediante una colección de cinco fotografías: oficios, animación, ambientación, artesanos y fuego.</p>
+          <div class="contest-actions">
+            <a class="button contest-primary" href="concurso.html#participa">Participar</a>
+            <a class="button" href="concurso.html#bases">Consultar bases</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="feature-show" id="il-diabole" aria-labelledby="diabole-title">
@@ -105,13 +121,13 @@
     <section class="map-section" id="plano" aria-labelledby="map-title">
       <div class="map-copy">
         <p class="eyebrow">UBÍCATE</p>
-        <h2 id="map-title">Plano del mercado</h2>
-        <p>Consulta los accesos, zonas de aparcamiento, plazas, campamentos y espacios de actividad.</p>
-        <button class="button map-button" id="open-map">Ampliar plano</button>
+        <h2 id="map-title">Mapa interactivo</h2>
+        <p>Toca cada punto para descubrir las zonas del mercado y abre Google Maps para llegar al recinto.</p>
+        <a class="button map-button" href="mapa_interactivo_buitrago.html">Abrir mapa interactivo</a>
       </div>
-      <button class="map-image" id="map-image-button" aria-label="Ampliar plano del mercado">
-        <img src="assets/plano.jpg" alt="Plano del mercado medieval de Buitrago del Lozoya">
-      </button>
+      <a class="map-image" href="mapa_interactivo_buitrago.html" aria-label="Abrir el mapa interactivo del mercado">
+        <img src="assets/mapa-interactivo.jpg" alt="Mapa interactivo del mercado medieval de Buitrago del Lozoya">
+      </a>
     </section>
 
     <section class="directions-section" id="como-llegar" aria-labelledby="directions-title">
@@ -144,11 +160,6 @@
       <span>Buitrago del Lozoya · 3–6 septiembre 2026</span>
     </div>
   </footer>
-
-  <dialog id="map-dialog">
-    <button class="dialog-close" id="close-map" aria-label="Cerrar plano">×</button>
-    <img src="assets/plano.jpg" alt="Plano ampliado del mercado medieval">
-  </dialog>
 
   <script src="app.js"></script>
 </body>

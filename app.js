@@ -110,12 +110,3 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
-
-const dialog = document.querySelector('#map-dialog');
-const openMap = () => dialog.showModal();
-document.querySelector('#open-map').addEventListener('click', openMap);
-document.querySelector('#map-image-button').addEventListener('click', openMap);
-document.querySelector('#close-map').addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', event => {
-  if (event.target === dialog) dialog.close();
-});

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17110c">
+<meta name="description" content="I Concurso Fotográfico Cinco miradas al Medievo de la Feria Medieval de Buitrago del Lozoya.">
+<title>Cinco miradas al Medievo · Buitrago</title>
+<link rel="stylesheet" href="concurso.css">
+</head>
+<body>
+<header class="contest-hero">
+  <nav class="topbar wrap" aria-label="Navegación del concurso">
+    <a class="brand" href="index.html">BUITRAGO <span>MEDIEVAL</span></a>
+    <a class="back" href="index.html">← Volver a la feria</a>
+  </nav>
+  <div class="hero-content wrap">
+    <div>
+      <p class="eyebrow">I CONCURSO FOTOGRÁFICO</p>
+      <h1>Cinco miradas<br><em>al Medievo</em></h1>
+      <p class="hero-text">Cinco fotografías. Cinco temáticas. Una historia completa de la Feria Medieval de Buitrago del Lozoya.</p>
+      <p class="deadline"><b>Entrega hasta el 13 de septiembre de 2026</b></p>
+      <div class="hero-actions">
+        <a class="button primary" href="#participa">Participar</a>
+        <a class="button ghost" href="#bases">Consultar bases</a>
+      </div>
+    </div>
+    <div class="five-mark" aria-hidden="true"><span>5</span><small>MIRADAS</small></div>
+  </div>
+</header>
+<main>
+  <section class="themes wrap" aria-labelledby="themes-title">
+    <p class="eyebrow dark">LA COLECCIÓN</p>
+    <h2 id="themes-title">Exactamente cinco imágenes</h2>
+    <p class="section-intro">Una fotografía seleccionada y retocada por cada temática obligatoria.</p>
+    <div class="theme-grid">
+      <article><span>01</span><h3>Taller de oficio</h3></article>
+      <article><span>02</span><h3>Animación de calle</h3></article>
+      <article><span>03</span><h3>Decoración y ambientación</h3></article>
+      <article><span>04</span><h3>Mercaderes o artesanos</h3></article>
+      <article><span>05</span><h3>Espectáculo de fuego</h3></article>
+    </div>
+  </section>
+
+  <section class="prizes">
+    <div class="wrap prizes-grid">
+      <div><p class="eyebrow">PREMIOS</p><h2>Una colección.<br>Una mirada propia.</h2></div>
+      <div class="prize-list">
+        <article><b>1º</b><div><strong>100 €</strong><span>Trofeo conmemorativo + diploma</span></div></article>
+        <article><b>2º</b><div><strong>50 €</strong><span>Diploma</span></div></article>
+        <p>Mención especial sin dotación económica a la mejor fotografía de cada temática.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rules wrap">
+    <details id="bases">
+      <summary><span id="bases-title" tabindex="-1">Consultar las bases completas</span><b>+</b></summary>
+      <div class="rules-content">
+        <article><h3>Requisitos</h3><ul>
+          <li>Las imágenes deberán haberse realizado durante la feria.</li>
+          <li>Cada participante presentará exactamente cinco fotografías.</li>
+          <li>Se permite retocar luz, color, contraste, encuadre y nitidez.</li>
+          <li>No se admiten fotomontajes, imágenes generadas con IA ni alteraciones sustanciales de la escena.</li>
+          <li>Formato JPG, sin firmas, logotipos ni marcas de agua.</li>
+        </ul></article>
+        <article><h3>Nombres de archivo</h3><pre>01_TallerOficio_NombreApellido.jpg
+02_AnimacionCalle_NombreApellido.jpg
+03_Decoracion_NombreApellido.jpg
+04_Mercaderes_NombreApellido.jpg
+05_Fuego_NombreApellido.jpg</pre></article>
+        <article><h3>Valoración</h3><ul>
+          <li>Calidad técnica.</li><li>Composición y originalidad.</li>
+          <li>Fuerza visual y capacidad narrativa.</li>
+          <li>Representación y ambientación medieval.</li>
+          <li>Coherencia de las cinco imágenes como colección.</li>
+        </ul></article>
+        <article><h3>Autoría y derechos de imagen</h3><p>Las fotografías seguirán siendo propiedad de sus autores. Participar autoriza a la organización a utilizarlas para promocionar la feria, publicaciones, exposiciones y futuras ediciones, indicando la autoría cuando sea posible.</p><p>Las imágenes con menores claramente identificables deberán contar con las autorizaciones necesarias.</p></article>
+        <article><h3>Fallo del jurado</h3><p>El fallo se comunicará públicamente a través de la app y de los canales oficiales de la feria. La participación supone la aceptación íntegra de estas bases.</p></article>
+      </div>
+    </details>
+  </section>
+
+  <section class="entry" id="participa" aria-labelledby="entry-title">
+    <div class="wrap entry-grid">
+      <div class="entry-copy">
+        <p class="eyebrow">PARTICIPA</p>
+        <h2 id="entry-title">Cuéntanos tu feria</h2>
+        <p>Completa tus datos y elige cómo entregar la colección: adjuntando los cinco JPG o pegando un enlace de WeTransfer.</p>
+        <button class="text-button" id="open-bases" type="button">Leer las bases antes de participar →</button>
+      </div>
+      <form id="contest-form" class="contest-form" novalidate>
+        <div class="form-grid">
+          <label>Nombre<input name="name" autocomplete="given-name" required></label>
+          <label>Apellidos<input name="surname" autocomplete="family-name" required></label>
+          <label>Correo electrónico<input type="email" name="email" autocomplete="email" required></label>
+          <label>Teléfono<input type="tel" name="phone" autocomplete="tel" required></label>
+          <label class="wide">Localidad<input name="city" autocomplete="address-level2" required></label>
+        </div>
+
+        <fieldset class="delivery-method">
+          <legend>¿Cómo quieres entregar las fotografías?</legend>
+          <label><input type="radio" name="delivery" value="upload" checked> Adjuntar cinco JPG</label>
+          <label><input type="radio" name="delivery" value="transfer"> Enlace de WeTransfer</label>
+        </fieldset>
+
+        <div id="upload-panel" class="upload-panel">
+          <label><span>01 · Taller de oficio</span><input type="file" accept="image/jpeg,.jpg,.jpeg" data-category="1"></label>
+          <label><span>02 · Animación de calle</span><input type="file" accept="image/jpeg,.jpg,.jpeg" data-category="2"></label>
+          <label><span>03 · Decoración y ambientación</span><input type="file" accept="image/jpeg,.jpg,.jpeg" data-category="3"></label>
+          <label><span>04 · Mercaderes o artesanos</span><input type="file" accept="image/jpeg,.jpg,.jpeg" data-category="4"></label>
+          <label><span>05 · Espectáculo de fuego</span><input type="file" accept="image/jpeg,.jpg,.jpeg" data-category="5"></label>
+        </div>
+
+        <div id="transfer-panel" class="transfer-panel" hidden>
+          <label>Enlace de WeTransfer<input id="transfer-url" type="url" name="transfer_url" placeholder="https://we.tl/..."></label>
+          <p>Sube las cinco fotografías juntas a WeTransfer y pega aquí el enlace.</p>
+        </div>
+
+        <label class="legal"><input type="checkbox" required> He leído y acepto las bases, la autorización de uso y los requisitos de derechos de imagen.</label>
+        <button class="submit-button" id="prepare-entry" type="submit">Preparar participación</button>
+        <p class="pending-note">El envío definitivo se activará al conectar el nuevo correo oficial del concurso.</p>
+        <p id="form-status" class="form-status" tabindex="-1" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap"><strong>XXIV FERIA MEDIEVAL</strong><span>Buitrago del Lozoya · 3–6 septiembre 2026</span></div></footer>
+<script src="concurso.js"></script>
+</body>
+</html>

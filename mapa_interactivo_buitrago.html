@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24150d">
+  <meta name="description" content="Mapa interactivo de la XXIV Feria Medieval de Buitrago del Lozoya, del 3 al 6 de septiembre de 2026.">
+  <title>Mapa interactivo · XXIV Feria Medieval de Buitrago</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap');
+    :root{--ink:#1b1009;--cream:#f8edcf;--paper:#ead3a1;--gold:#d9a545;--red:#7f261f;--wood:#24150d;--serif:'Cinzel',Georgia,serif;--sans:'Montserrat',system-ui,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--cream);background:radial-gradient(circle at 50% 0,#4a2a15 0,var(--wood) 42%,#140b06 100%);font-family:var(--sans)}button,a{font:inherit}a{color:inherit}.wrap{width:min(100% - 24px,940px);margin-inline:auto}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}.back{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}.back:hover{color:var(--gold)}.edition{color:var(--gold);font:700 .72rem var(--serif);letter-spacing:.1em;text-align:right}
+    header{text-align:center;padding:20px 0 26px}header .eyebrow{margin:0 0 8px;color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.18em}h1{max-width:780px;margin:0 auto;font:800 clamp(1.65rem,5.4vw,3.35rem)/1.08 var(--serif)}header p:last-child{margin:12px auto 0;color:#dbcbae;line-height:1.6}
+    .map-shell{position:relative;border:3px solid #9a692d;border-radius:18px;overflow:hidden;background:#b89560;box-shadow:0 24px 70px #0009}.viewport{overflow:auto;overscroll-behavior:contain}.canvas{position:relative;width:100%;min-width:100%;transition:width .2s ease}.canvas img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+    .point{position:absolute;z-index:2;display:grid;place-items:center;width:42px;height:42px;padding:0;transform:translate(-50%,-50%);border:3px solid #32190b;border-radius:50%;color:#241207;background:linear-gradient(#f0c464,#c98522);box-shadow:0 5px 15px #0009;font:800 1rem var(--serif);cursor:pointer}.point:hover,.point:focus-visible{outline:3px solid #fff3c8;outline-offset:2px;transform:translate(-50%,-50%) scale(1.1)}
+    .controls{position:absolute;top:12px;right:12px;z-index:5;display:flex;gap:7px}.controls button{display:grid;place-items:center;width:42px;height:42px;border:1px solid #dfbd78;border-radius:10px;color:#fff4d7;background:#2e180de8;font-size:1.15rem;font-weight:800;cursor:pointer}.controls button:hover{background:#68391d}
+    .map-note{display:flex;align-items:flex-start;gap:10px;margin:12px 0 0;padding:13px 15px;border:1px solid #7f5a32;border-radius:12px;color:#e5d2ad;background:#1c0f08a8;font-size:.82rem;line-height:1.55}.map-note strong{color:var(--gold)}
+    .legend{margin:14px 0 88px;padding:20px;border:2px solid #8a5b25;border-radius:16px;color:#2d2117;background:linear-gradient(#f1ddb0,#dfbd7c);box-shadow:0 12px 35px #0007}.legend h2{margin:0 0 13px;font:800 1.15rem var(--serif)}.legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.legend button{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid #b58a4e;border-radius:10px;color:#2d2117;background:#f8e7c1;text-align:left;cursor:pointer}.legend button:hover{border-color:var(--red);background:#fff3d6}.legend b{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:50%;color:#fff4dc;background:var(--red);font-family:var(--serif)}
+    nav{position:fixed;right:0;bottom:0;left:0;z-index:15;display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:env(safe-area-inset-bottom);background:#1a0d07ee;backdrop-filter:blur(10px);border-top:1px solid #775126}nav a{padding:14px 4px;color:#f2dfb8;font-size:.72rem;font-weight:700;text-align:center;text-decoration:none;text-transform:uppercase}nav a:hover{color:var(--gold);background:#492513}
+    dialog{width:min(92vw,520px);padding:0;border:0;border-radius:18px;color:#2d2117;background:linear-gradient(#f4e4bd,#dcb66c);box-shadow:0 30px 90px #000}dialog::backdrop{background:#090503d9;backdrop-filter:blur(3px)}.card{position:relative;padding:25px}.card-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border:0;border-radius:50%;color:#fff;background:var(--red);font-size:1.3rem;cursor:pointer}.card-number{display:grid;place-items:center;width:38px;height:38px;margin-bottom:12px;border-radius:50%;color:#fff2d2;background:#8c531d;font:800 1rem var(--serif)}.card h2{margin:0 44px 9px 0;font:800 1.35rem/1.2 var(--serif)}.card p{margin:0;color:#5b432c;line-height:1.6}.maps-link{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding:13px 16px;border-radius:999px;color:#fff6e5;background:var(--red);font-size:.82rem;font-weight:800;text-decoration:none}.maps-link:hover{background:#5f1815}.route-help{display:block;margin-top:10px;color:#6f5132;font-size:.7rem;text-align:center;line-height:1.45}
+    @media(max-width:620px){.edition{font-size:.62rem}.topbar{padding:14px 0}header{padding-top:12px}.controls button{width:38px;height:38px}.point{width:36px;height:36px;font-size:.86rem}.legend{padding:15px}.legend-grid{grid-template-columns:1fr}.legend button{padding:9px}.map-note{font-size:.75rem}nav a{font-size:.62rem}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="back" href="index.html#plano">← Volver a la web</a>
+      <span class="edition">XXIV FERIA MEDIEVAL · 2026</span>
+    </div>
+    <header>
+      <p class="eyebrow">3–6 SEPTIEMBRE · BUITRAGO DEL LOZOYA</p>
+      <h1>Mapa interactivo del mercado</h1>
+      <p>Toca los puntos para conocer cada zona y abrir la ruta al recinto.</p>
+    </header>
+
+    <main>
+      <section class="map-shell" aria-label="Plano interactivo del mercado medieval">
+        <div class="controls" aria-label="Controles del plano">
+          <button id="zoom-in" type="button" aria-label="Ampliar plano">+</button>
+          <button id="zoom-out" type="button" aria-label="Reducir plano">−</button>
+          <button id="zoom-reset" type="button" aria-label="Restablecer plano">⌖</button>
+        </div>
+        <div class="viewport" id="viewport">
+          <div class="canvas" id="canvas">
+            <img src="assets/mapa-interactivo.jpg" alt="Plano de las zonas de la Feria Medieval de Buitrago del Lozoya">
+          </div>
+        </div>
+      </section>
+
+      <p class="map-note"><span aria-hidden="true">📍</span><span><strong>Cómo llegar:</strong> Google Maps te lleva hasta Plaza Picasso, acceso al recinto. Una vez dentro, utiliza este plano para localizar las zonas temporales.</span></p>
+
+      <section class="legend" aria-labelledby="legend-title">
+        <h2 id="legend-title">Puntos de interés</h2>
+        <div class="legend-grid" id="legend-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <nav aria-label="Navegación de la feria">
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#programa">Programa</a>
+    <a href="index.html#plano">Plano</a>
+    <a href="index.html#como-llegar">Visita</a>
+  </nav>
+
+  <dialog id="spot-dialog" aria-labelledby="spot-title">
+    <article class="card">
+      <button class="card-close" id="close-dialog" type="button" aria-label="Cerrar">×</button>
+      <span class="card-number" id="spot-number"></span>
+      <h2 id="spot-title"></h2>
+      <p id="spot-description"></p>
+      <a class="maps-link" id="maps-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Plaza+Picasso%2C+Buitrago+del+Lozoya%2C+Madrid" target="_blank" rel="noopener">Abrir ruta en Google Maps ↗</a>
+      <small class="route-help">La ruta llega al acceso de Plaza Picasso; las zonas interiores son temporales.</small>
+    </article>
+  </dialog>
+
+  <script>
+    const spots = [
+      {id:1,title:'Zona infantil',description:'Atracciones, títeres y concierto a la luz de las velas.',x:36.5,y:50.2},
+      {id:2,title:'Zona gastronómica',description:'Espacio gastronómico del mercado medieval.',x:45.0,y:33.1},
+      {id:3,title:'Espectáculos estáticos',description:'Zona de espectáculos estáticos y gastronomía.',x:60.1,y:38.9},
+      {id:4,title:'Mercado y exposición',description:'Mercado y exposición Runas del Viento.',x:48.3,y:41.0},
+      {id:5,title:'Photocall medieval',description:'Photocall de fantasía medieval.',x:55.7,y:52.6},
+      {id:6,title:'Plaza Picasso',description:'Punto de inicio de los pasacalles.',x:37.8,y:54.2}
+    ];
+    const canvas = document.querySelector('#canvas');
+    const legend = document.querySelector('#legend-list');
+    const dialog = document.querySelector('#spot-dialog');
+    const number = document.querySelector('#spot-number');
+    const title = document.querySelector('#spot-title');
+    const description = document.querySelector('#spot-description');
+
+    function openSpot(id){
+      const spot=spots.find(item=>item.id===id);
+      number.textContent=spot.id;
+      title.textContent=spot.title;
+      description.textContent=spot.description;
+      dialog.showModal();
+    }
+
+    spots.forEach(spot=>{
+      const marker=document.createElement('button');
+      marker.type='button';
+      marker.className='point';
+      marker.textContent=spot.id;
+      marker.style.left=`${spot.x}%`;
+      marker.style.top=`${spot.y}%`;
+      marker.setAttribute('aria-label',`${spot.id}. ${spot.title}`);
+      marker.addEventListener('click',()=>openSpot(spot.id));
+      canvas.appendChild(marker);
+
+      const item=document.createElement('button');
+      item.type='button';
+      item.innerHTML=`<b>${spot.id}</b><span>${spot.title}</span>`;
+      item.addEventListener('click',()=>openSpot(spot.id));
+      legend.appendChild(item);
+    });
+
+    document.querySelector('#close-dialog').addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+
+    let zoom=1;
+    function applyZoom(){canvas.style.width=`${zoom*100}%`}
+    document.querySelector('#zoom-in').addEventListener('click',()=>{zoom=Math.min(2.4,zoom+.25);applyZoom()});
+    document.querySelector('#zoom-out').addEventListener('click',()=>{zoom=Math.max(1,zoom-.25);applyZoom()});
+    document.querySelector('#zoom-reset').addEventListener('click',()=>{zoom=1;applyZoom();document.querySelector('#viewport').scrollTo({top:0,left:0,behavior:'smooth'})});
+  </script>
+</body>
+</html>
