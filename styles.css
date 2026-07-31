@@ -47,7 +47,7 @@ button { font: inherit; }
 .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .72fr; gap: 76px; align-items: center; min-height: calc(100svh - 91px); padding: 54px 0 70px; }
 .eyebrow { margin: 0 0 12px; color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: .24em; }
 .eyebrow.dark { color: var(--red); }
-.hero-place { margin: 0 0 18px; color: #fff4df; font-family: var(--serif); font-size: clamp(16px, 2vw, 23px); font-weight: 700; letter-spacing: .13em; }
+.hero-place { margin: 0 0 18px; color: #fff4df; font-family: var(--serif); font-size: clamp(22px, 3vw, 38px); font-weight: 700; line-height: 1.1; letter-spacing: .1em; }
 h1, h2, h3 { font-family: var(--serif); }
 h1 { margin: 0; max-width: 720px; font-size: clamp(48px, 6.3vw, 88px); line-height: .98; letter-spacing: -.035em; }
 h1 em { color: var(--gold); font-style: normal; }
