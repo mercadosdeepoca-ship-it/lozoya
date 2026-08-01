@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('fonts.css');
 
 :root {
   --ink: #17110c;
@@ -213,6 +213,9 @@ h2 { margin: 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spa
 footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
 .footer-inner { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; letter-spacing: .06em; }
 .footer-inner strong { color: var(--gold); font-family: var(--serif); }
+.footer-copy { display: grid; gap: 5px; }
+.footer-legal { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 14px; align-items: center; }
+.footer-legal a, .footer-legal button { padding: 0; border: 0; color: #f4e4c6; background: none; font: 700 11px var(--sans); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 
 .zoomable-photo { cursor: zoom-in; }
 .zoomable-photo:focus-visible { outline: 4px solid var(--gold); outline-offset: 4px; }
@@ -319,6 +322,7 @@ body.lightbox-open { overflow: hidden; }
   .directions-section { padding: 70px 0; }
   .google-map, .google-map iframe { min-height: 390px; height: 390px; }
   .footer-inner { flex-direction: column; }
+  .footer-legal { justify-content: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {

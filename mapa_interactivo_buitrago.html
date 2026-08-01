@@ -7,10 +7,10 @@
   <meta name="description" content="Mapa interactivo de la XXIV Feria Medieval de Buitrago del Lozoya, del 3 al 6 de septiembre de 2026.">
   <title>Mapa interactivo · XXIV Feria Medieval de Buitrago</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap');
+    @import url('fonts.css');
     :root{--ink:#1b1009;--cream:#f8edcf;--paper:#ead3a1;--gold:#d9a545;--red:#7f261f;--wood:#24150d;--serif:'Cinzel',Georgia,serif;--sans:'Montserrat',system-ui,sans-serif}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--cream);background:radial-gradient(circle at 50% 0,#4a2a15 0,var(--wood) 42%,#140b06 100%);font-family:var(--sans)}button,a{font:inherit}a{color:inherit}.wrap{width:min(100% - 24px,940px);margin-inline:auto}
-    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}.back{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}.back:hover{color:var(--gold)}.edition{color:var(--gold);font:700 .72rem var(--serif);letter-spacing:.1em;text-align:right}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}.back{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}.back:hover{color:var(--gold)}.edition{color:var(--gold);font:700 .72rem var(--serif);letter-spacing:.1em;text-align:right}.edition a{display:block;margin-top:5px;color:#f1dfbd;font:.65rem var(--sans);text-decoration:underline;text-underline-offset:3px}
     header{text-align:center;padding:20px 0 26px}header .eyebrow{margin:0 0 8px;color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.18em}h1{max-width:780px;margin:0 auto;font:800 clamp(1.65rem,5.4vw,3.35rem)/1.08 var(--serif)}header p:last-child{margin:12px auto 0;color:#dbcbae;line-height:1.6}
     .map-shell{position:relative;border:3px solid #9a692d;border-radius:18px;overflow:hidden;background:#b89560;box-shadow:0 24px 70px #0009}.viewport{overflow:auto;overscroll-behavior:contain}.canvas{position:relative;width:100%;min-width:100%;transition:width .2s ease}.canvas img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
     .point{position:absolute;z-index:2;display:grid;place-items:center;width:42px;height:42px;padding:0;transform:translate(-50%,-50%);border:3px solid #32190b;border-radius:50%;color:#241207;background:linear-gradient(#f0c464,#c98522);box-shadow:0 5px 15px #0009;font:800 1rem var(--serif);cursor:pointer}.point:hover,.point:focus-visible{outline:3px solid #fff3c8;outline-offset:2px;transform:translate(-50%,-50%) scale(1.1)}
@@ -27,7 +27,7 @@
   <div class="wrap">
     <div class="topbar">
       <a class="back" href="index.html#plano">← Volver a la web</a>
-      <span class="edition">XXIV FERIA MEDIEVAL · 2026</span>
+      <span class="edition">XXIV FERIA MEDIEVAL · 2026<a href="legal.html">Información legal</a></span>
     </div>
     <header>
       <p class="eyebrow">3–6 SEPTIEMBRE · BUITRAGO DEL LOZOYA</p>

@@ -50,7 +50,7 @@ form.addEventListener('submit', event => {
   }
 
   submitButton.textContent = 'Participación preparada';
-  formStatus.textContent = 'Todo correcto. El envío definitivo se activará al conectar el correo oficial del concurso.';
+  formStatus.textContent = 'Datos revisados. El envío definitivo todavía no está activo y nada se ha transmitido.';
   formStatus.focus();
 });
 

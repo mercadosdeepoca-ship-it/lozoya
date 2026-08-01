@@ -7,6 +7,7 @@
 <meta name="description" content="I Concurso Fotográfico Cinco miradas al Medievo de la Feria Medieval de Buitrago del Lozoya.">
 <title>Cinco miradas al Medievo · Buitrago</title>
 <link rel="stylesheet" href="concurso.css">
+<link rel="stylesheet" href="privacy.css">
 </head>
 <body>
 <header class="contest-hero">
@@ -92,6 +93,10 @@
         <button class="text-button" id="open-bases" type="button">Leer las bases antes de participar →</button>
       </div>
       <form id="contest-form" class="contest-form" novalidate>
+        <aside class="privacy-summary">
+          <strong>Información básica de privacidad</strong>
+          <p><b>Responsable:</b> Pura Alexi Arteaga Almendras. <b>Finalidad:</b> gestionar la participación, valoración, premios y publicación conforme a las bases. <b>Legitimación:</b> aceptación de las bases y, cuando proceda, autorización. <b>Destinatarios:</b> organización, jurado y proveedores necesarios; no se venden datos. <b>Derechos:</b> en <a href="mailto:degladis.serviciostematicos@gmail.com">degladis.serviciostematicos@gmail.com</a>. <a href="legal.html#privacidad">Información completa</a>.</p>
+        </aside>
         <div class="form-grid">
           <label>Nombre<input name="name" autocomplete="given-name" required></label>
           <label>Apellidos<input name="surname" autocomplete="family-name" required></label>
@@ -119,15 +124,16 @@
           <p>Sube las cinco fotografías juntas a WeTransfer y pega aquí el enlace.</p>
         </div>
 
-        <label class="legal"><input type="checkbox" required> He leído y acepto las bases, la autorización de uso y los requisitos de derechos de imagen.</label>
+        <label class="legal"><input type="checkbox" name="legal_acceptance" required><span>He leído y acepto las bases, la autorización de uso, los requisitos de derechos de imagen y la <a href="legal.html#privacidad">política de privacidad</a>.</span></label>
         <button class="submit-button" id="prepare-entry" type="submit">Preparar participación</button>
-        <p class="pending-note">El envío definitivo se activará al conectar el nuevo correo oficial del concurso.</p>
+        <p class="pending-note">El envío definitivo aún no está activo: este formulario no transmite ni almacena los datos introducidos.</p>
         <p id="form-status" class="form-status" tabindex="-1" aria-live="polite"></p>
       </form>
     </div>
   </section>
 </main>
-<footer><div class="wrap"><strong>XXIV FERIA MEDIEVAL</strong><span>Buitrago del Lozoya · 3–6 septiembre 2026</span></div></footer>
+<footer><div class="wrap contest-footer"><div><strong>XXIV FERIA MEDIEVAL</strong><span>Buitrago del Lozoya · 3–6 septiembre 2026</span></div><nav aria-label="Enlaces legales"><a href="legal.html#aviso-legal">Aviso legal</a><a href="legal.html#privacidad">Privacidad</a><a href="legal.html#cookies">Cookies</a><button type="button" data-cookie-settings>Configurar cookies</button></nav></div></footer>
+<script src="privacy.js"></script>
 <script src="concurso.js"></script>
 </body>
 </html>

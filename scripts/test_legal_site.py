@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+"""Prueba local de legal, privacidad, consentimiento y móvil."""
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+
+BASE = "http://127.0.0.1:8765"
+OUT = Path("test-artifacts")
+OUT.mkdir(exist_ok=True)
+
+
+def no_horizontal_overflow(page):
+    return page.evaluate("document.documentElement.scrollWidth <= document.documentElement.clientWidth")
+
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(channel="chrome", headless=True)
+    context = browser.new_context(viewport={"width": 1280, "height": 800})
+    page = context.new_page()
+    external = []
+    page.on("request", lambda request: external.append(request.url) if not request.url.startswith(BASE) else None)
+
+    page.goto(f"{BASE}/index.html", wait_until="networkidle")
+    assert page.locator(".cookie-banner").is_visible()
+    assert page.locator("iframe[data-map-src]").get_attribute("src") is None
+    assert not any("google.com/maps?q=" in url for url in external), external
+    assert not any("fonts.googleapis.com" in url or "fonts.gstatic.com" in url for url in external), external
+    assert page.locator("[data-map-placeholder]").is_visible()
+    page.locator("[data-cookie-reject]").click()
+    assert page.locator("[data-map-placeholder]").is_visible()
+    assert page.evaluate("JSON.parse(localStorage.getItem('lozoya_cookie_consent_v1')).maps") is False
+
+    page.locator("[data-cookie-settings]").click()
+    page.locator("[data-cookie-accept]").click()
+    page.wait_for_selector("iframe[data-map-src]:not([hidden])")
+    assert "google.com/maps" in page.locator("iframe[data-map-src]").get_attribute("src")
+    page.screenshot(path=str(OUT / "inicio-legal-escritorio.png"), full_page=True)
+
+    page.goto(f"{BASE}/legal.html", wait_until="networkidle")
+    assert page.locator("#aviso-legal").is_visible()
+    text = page.locator("#aviso-legal").inner_text()
+    for expected in ["Pura Alexi Arteaga Almendras", "16853964R", "Calle Yeles 94", "693 672 402"]:
+        assert expected in text
+    assert no_horizontal_overflow(page)
+    page.screenshot(path=str(OUT / "legal-escritorio.png"), full_page=True)
+
+    mobile = browser.new_context(viewport={"width": 390, "height": 844})
+    mpage = mobile.new_page()
+    mpage.goto(f"{BASE}/legal.html", wait_until="networkidle")
+    assert mpage.locator(".cookie-banner").is_visible()
+    assert no_horizontal_overflow(mpage)
+    mpage.locator("[data-cookie-reject]").click()
+    mpage.screenshot(path=str(OUT / "legal-movil.png"), full_page=True)
+
+    mpage.goto(f"{BASE}/concurso.html#participa", wait_until="networkidle")
+    assert mpage.locator(".privacy-summary").is_visible()
+    assert "no transmite ni almacena" in mpage.locator(".pending-note").inner_text()
+    assert mpage.locator("input[name=legal_acceptance]").is_visible()
+    assert no_horizontal_overflow(mpage)
+    mpage.locator("input[name=name]").fill("Prueba")
+    mpage.locator("input[name=surname]").fill("Local")
+    mpage.locator("input[name=email]").fill("prueba@example.com")
+    mpage.locator("input[name=phone]").fill("600000000")
+    mpage.locator("input[name=city]").fill("Buitrago")
+    mpage.locator("input[value=transfer]").check()
+    mpage.locator("#transfer-url").fill("https://we.tl/prueba")
+    mpage.locator("input[name=legal_acceptance]").check()
+    mpage.locator("#prepare-entry").click()
+    assert "nada se ha transmitido" in mpage.locator("#form-status").inner_text()
+    mpage.screenshot(path=str(OUT / "concurso-privacidad-movil.png"), full_page=True)
+
+    mpage.goto(f"{BASE}/mapa_interactivo_buitrago.html", wait_until="networkidle")
+    assert mpage.locator("a[href='legal.html']").is_visible()
+    assert no_horizontal_overflow(mpage)
+
+    mobile.close()
+    context.close()
+    browser.close()
+
+print("OK: legal, consentimiento, formulario y vistas 1280/390 verificados")

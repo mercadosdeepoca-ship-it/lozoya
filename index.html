@@ -7,6 +7,7 @@
   <meta name="description" content="Cuenta atrás y programación de la XXIV Feria Medieval de Buitrago del Lozoya, del 3 al 6 de septiembre de 2026.">
   <title>XXIV Feria Medieval · Buitrago del Lozoya</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="privacy.css">
 </head>
 <body>
   <header class="hero" id="inicio">
@@ -183,7 +184,13 @@
           </div>
         </div>
         <div class="google-map">
-          <iframe title="Mapa de Buitrago del Lozoya en Google Maps" src="https://www.google.com/maps?q=Buitrago+del+Lozoya%2C+Madrid&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <div class="map-consent" data-map-placeholder>
+            <div>
+              <p>El mapa de Google solo se cargará si lo autorizas. También puedes usar los enlaces de ruta sin cargarlo aquí.</p>
+              <button type="button" data-map-accept>Mostrar Google Maps</button>
+            </div>
+          </div>
+          <iframe title="Mapa de Buitrago del Lozoya en Google Maps" data-map-src="https://www.google.com/maps?q=Buitrago+del+Lozoya%2C+Madrid&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen hidden></iframe>
         </div>
       </div>
     </section>
@@ -210,11 +217,20 @@
 
   <footer>
     <div class="wrap footer-inner">
-      <strong>XXIV FERIA MEDIEVAL</strong>
-      <span>Buitrago del Lozoya · 3–6 septiembre 2026</span>
+      <div class="footer-copy">
+        <strong>XXIV FERIA MEDIEVAL</strong>
+        <span>Buitrago del Lozoya · 3–6 septiembre 2026</span>
+      </div>
+      <nav class="footer-legal" aria-label="Enlaces legales">
+        <a href="legal.html#aviso-legal">Aviso legal</a>
+        <a href="legal.html#privacidad">Privacidad</a>
+        <a href="legal.html#cookies">Cookies</a>
+        <button type="button" data-cookie-settings>Configurar cookies</button>
+      </nav>
     </div>
   </footer>
 
+  <script src="privacy.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
