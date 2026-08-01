@@ -110,3 +110,65 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+const zoomablePhotos = [...document.querySelectorAll([
+  '.galata-photo img',
+  '.rithuals-show img',
+  '.capture-gallery img',
+  '.feature-show img'
+].join(', '))];
+
+if (zoomablePhotos.length) {
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Foto ampliada');
+  lightbox.innerHTML = `
+    <button class="lightbox-close" type="button" aria-label="Cerrar foto ampliada">×</button>
+    <img class="lightbox-image" alt="">
+  `;
+  document.body.append(lightbox);
+
+  const lightboxImage = lightbox.querySelector('.lightbox-image');
+  const closeButton = lightbox.querySelector('.lightbox-close');
+  let lastFocusedPhoto = null;
+
+  function openLightbox(photo) {
+    lastFocusedPhoto = photo;
+    lightboxImage.src = photo.currentSrc || photo.src;
+    lightboxImage.alt = photo.alt;
+    lightbox.classList.add('open');
+    document.body.classList.add('lightbox-open');
+    closeButton.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.classList.remove('lightbox-open');
+    lightboxImage.removeAttribute('src');
+    lastFocusedPhoto?.focus();
+  }
+
+  zoomablePhotos.forEach(photo => {
+    photo.classList.add('zoomable-photo');
+    photo.tabIndex = 0;
+    photo.setAttribute('role', 'button');
+    photo.setAttribute('aria-label', `${photo.alt}. Ampliar foto`);
+    photo.addEventListener('click', () => openLightbox(photo));
+    photo.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(photo);
+      }
+    });
+  });
+
+  closeButton.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', event => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+}

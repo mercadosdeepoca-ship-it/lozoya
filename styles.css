@@ -214,6 +214,46 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
 .footer-inner { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; letter-spacing: .06em; }
 .footer-inner strong { color: var(--gold); font-family: var(--serif); }
 
+.zoomable-photo { cursor: zoom-in; }
+.zoomable-photo:focus-visible { outline: 4px solid var(--gold); outline-offset: 4px; }
+body.lightbox-open { overflow: hidden; }
+.lightbox {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: none;
+  place-items: center;
+  padding: 58px 18px 24px;
+  background: rgba(5, 4, 3, .94);
+  backdrop-filter: blur(6px);
+}
+.lightbox.open { display: grid; }
+.lightbox-image {
+  width: auto;
+  max-width: min(1200px, 96vw);
+  height: auto;
+  max-height: calc(100svh - 84px);
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.65);
+}
+.lightbox-close {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top));
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 50%;
+  background: rgba(0,0,0,.58);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
 
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr .63fr; gap: 32px; }
