@@ -265,7 +265,7 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .feature-show, .feature-photos { min-height: 460px; }
   .feature-photo-main { inset: 0; }
   .feature-photo-detail { right: 5%; bottom: 5%; width: 45%; height: 38%; }
-  .feature-copy { min-height: 220px; padding: 55px 28px; }
+  .feature-copy { order: -1; min-height: 220px; padding: 55px 28px; }
   .feature-thumbs { gap: 8px; margin-top: 24px; }
   .schedule-section, .places { padding: 70px 0; }
   .tabs { width: 100%; }
