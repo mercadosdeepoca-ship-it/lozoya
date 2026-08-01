@@ -279,13 +279,16 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .rithuals-gallery { grid-template-columns: 1fr; gap: 12px; }
   .rithuals-feature { margin-top: 36px; grid-template-columns: 1fr; gap: 14px; }
   .rithuals-feature img { aspect-ratio: 4 / 5; }
-  .feature-show, .feature-photos { min-height: 460px; }
+  .feature-show { min-height: 0; }
+  .feature-photos { display: grid; min-height: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 0 28px 34px; background: #0c0806; }
   .capture-show, .capture-copy { min-height: 520px; }
   .capture-show::after { background: linear-gradient(0deg, rgba(12,7,4,.9) 0%, rgba(12,7,4,.15) 68%, transparent 100%); }
   .capture-copy { width: min(100% - 30px, 1160px); padding: 42px 0; }
   .capture-copy h2 { font-size: clamp(44px, 14vw, 74px); }
-  .feature-photo-main { inset: 0; }
-  .feature-photo-detail { right: 5%; bottom: 5%; width: 45%; height: 38%; }
+  .feature-photo { position: relative; inset: auto; width: auto; height: auto; border: 1px solid rgba(212,155,63,.45); border-radius: 8px; box-shadow: none; }
+  .feature-photo-main { inset: auto; }
+  .feature-photo-detail { right: auto; bottom: auto; width: auto; height: auto; border: 1px solid rgba(212,155,63,.45); }
+  .feature-photo img { height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
   .feature-copy { order: -1; min-height: 220px; padding: 55px 28px; }
   .feature-thumbs { gap: 8px; margin-top: 24px; }
   .schedule-section, .places { padding: 70px 0; }
