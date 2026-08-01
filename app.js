@@ -4,7 +4,7 @@ const schedules = {
     ['19:00', 'Gran desfile inaugural: músicos, bufones y seres mágicos', 'Recorrido del mercado'],
     ['20:30', 'Cuéntame un cuento', 'Plaza del Gato'],
     ['20:45', 'El cazador de duendes', 'Recorrido del mercado'],
-    ['21:00', 'Los sonidos del medievo · Galata', 'Recorrido del mercado'],
+    ['21:00', 'Pasacalles musical · Galata', 'Recorrido del mercado'],
     ['21:30', 'Rebelión musical', 'Recorrido del mercado'],
     ['21:30', 'El regreso del Dragón Rojo', 'Recorrido del mercado'],
     ['22:00', 'Acrobacias aéreas', 'Plaza del Castillo'],

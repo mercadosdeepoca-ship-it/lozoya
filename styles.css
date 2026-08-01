@@ -150,45 +150,16 @@ h2 { margin: 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spa
   font-weight: 800;
   background: linear-gradient(transparent, rgba(12,7,4,.9));
 }
-.capture-show {
-  position: relative;
-  min-height: 680px;
-  overflow: hidden;
-  color: #fff4df;
-  background: #100b07;
-}
-.capture-show > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-.capture-show::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(12,7,4,.82) 0%, rgba(12,7,4,.28) 48%, transparent 75%);
-}
-.capture-copy {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  min-height: 680px;
-  width: min(100% - 48px, 1160px);
-  margin: 0 auto;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 80px 0;
-}
-.capture-copy h2 {
-  max-width: 720px;
-  margin: 0;
-  color: var(--gold);
-  font-size: clamp(48px, 8vw, 112px);
-  line-height: .88;
-}
+.galata-show { display: grid; grid-template-columns: .68fr 1.32fr; min-height: 720px; color: #fff4df; background: #100b07; }
+.galata-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(50px, 7vw, 100px); background: radial-gradient(circle at right, #36201a, #100b07 70%); }
+.galata-copy h2 { margin: 0; color: var(--gold); font-size: clamp(64px, 8vw, 118px); line-height: .9; }
+.galata-photo { display: grid; place-items: center; min-height: 720px; margin: 0; overflow: hidden; background: #090706; }
+.galata-photo img { width: 100%; height: 720px; object-fit: contain; }
+.capture-show { padding: clamp(70px, 8vw, 110px) 0; color: #fff4df; background: radial-gradient(circle at 50% 15%, #472116, #100b07 55%); }
+.capture-head { margin-bottom: clamp(32px, 5vw, 58px); text-align: center; }
+.capture-head h2 { max-width: 960px; margin: 0 auto; color: var(--gold); font-size: clamp(48px, 7vw, 98px); line-height: .94; }
+.capture-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.capture-gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid rgba(212,155,63,.5); border-radius: 10px; box-shadow: 0 18px 42px rgba(0,0,0,.3); }
 .feature-show { position: relative; display: grid; grid-template-columns: 1.35fr .65fr; min-height: 620px; color: #fff4df; background: #090706; overflow: hidden; }
 .feature-photos { position: relative; min-height: 620px; }
 .feature-photo { position: absolute; margin: 0; overflow: hidden; box-shadow: 0 22px 70px rgba(0,0,0,.45); }
@@ -279,17 +250,20 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .rithuals-gallery { grid-template-columns: 1fr; gap: 12px; }
   .rithuals-feature { margin-top: 36px; grid-template-columns: 1fr; gap: 14px; }
   .rithuals-feature img { aspect-ratio: 4 / 5; }
-  .feature-show { min-height: 0; }
-  .feature-photos { display: grid; min-height: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 0 28px 34px; background: #0c0806; }
-  .capture-show, .capture-copy { min-height: 520px; }
-  .capture-show::after { background: linear-gradient(0deg, rgba(12,7,4,.9) 0%, rgba(12,7,4,.15) 68%, transparent 100%); }
-  .capture-copy { width: min(100% - 30px, 1160px); padding: 42px 0; }
-  .capture-copy h2 { font-size: clamp(44px, 14vw, 74px); }
-  .feature-photo { position: relative; inset: auto; width: auto; height: auto; border: 1px solid rgba(212,155,63,.45); border-radius: 8px; box-shadow: none; }
-  .feature-photo-main { inset: auto; }
-  .feature-photo-detail { right: auto; bottom: auto; width: auto; height: auto; border: 1px solid rgba(212,155,63,.45); }
-  .feature-photo img { height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
-  .feature-copy { order: -1; min-height: 220px; padding: 55px 28px; }
+  .galata-show { grid-template-columns: 1fr; min-height: 0; }
+  .galata-copy { min-height: 230px; padding: 55px 28px 42px; text-align: center; }
+  .galata-copy h2 { font-size: clamp(62px, 21vw, 90px); }
+  .galata-photo { min-height: 0; }
+  .galata-photo img { height: auto; max-height: none; }
+  .capture-show { padding: 65px 0; }
+  .capture-head { margin-bottom: 30px; }
+  .capture-head h2 { font-size: clamp(42px, 12vw, 64px); }
+  .capture-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .capture-gallery img { border-radius: 7px; }
+  .feature-show, .feature-photos { min-height: 460px; }
+  .feature-photo-main { inset: 0; }
+  .feature-photo-detail { right: 5%; bottom: 5%; width: 45%; height: 38%; }
+  .feature-copy { min-height: 220px; padding: 55px 28px; }
   .feature-thumbs { gap: 8px; margin-top: 24px; }
   .schedule-section, .places { padding: 70px 0; }
   .tabs { width: 100%; }
