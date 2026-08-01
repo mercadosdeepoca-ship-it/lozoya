@@ -262,7 +262,8 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .capture-gallery { grid-template-columns: 1fr; gap: 10px; }
   .capture-gallery img,
   .capture-gallery img:first-child { grid-column: 1; aspect-ratio: 4 / 3; border-radius: 7px; }
-  .feature-show, .feature-photos { min-height: 460px; }
+  .feature-show { min-height: 0; }
+  .feature-photos { min-height: 0; aspect-ratio: 685 / 503; }
   .feature-photo-main { inset: 0; }
   .feature-photo-detail { right: 5%; bottom: 5%; width: 45%; height: 38%; }
   .feature-copy { order: -1; min-height: 220px; padding: 55px 28px; }
