@@ -75,18 +75,77 @@ h2 { margin: 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spa
 .contest-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .contest-actions .button { margin-top: 16px; }
 .contest-actions .contest-primary { color: var(--ink); background: var(--gold); }
-.standalone-photo {
-  display: grid;
-  place-items: center;
-  padding: clamp(38px, 6vw, 86px);
+.contest-teaser .eyebrow { font-size: clamp(17px, 1.7vw, 26px); letter-spacing: .16em; }
+.rithuals-show {
+  padding: clamp(54px, 8vw, 110px) clamp(18px, 5vw, 72px);
+  color: var(--ink);
   background: #efe4d0;
 }
-.standalone-photo img {
-  display: block;
+.rithuals-head {
   width: min(100%, 1100px);
+  margin: 0 auto 42px;
+}
+.rithuals-head h2 {
+  margin: 0;
+  color: #8c2f22;
+  font-size: clamp(64px, 10vw, 138px);
+  line-height: .84;
+}
+.rithuals-solo {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+}
+.rithuals-solo img {
+  display: block;
+  width: 100%;
   border: 6px solid #fff8e9;
   border-radius: 24px;
   box-shadow: 0 25px 70px rgba(46,28,17,.28);
+}
+.rithuals-gallery {
+  display: grid;
+  width: min(100%, 1100px);
+  margin: 22px auto 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.rithuals-gallery img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(46,28,17,.2);
+}
+.rithuals-feature {
+  display: grid;
+  width: min(100%, 1100px);
+  margin: 58px auto 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.rithuals-feature figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #140b08;
+  box-shadow: 0 22px 54px rgba(46,28,17,.3);
+}
+.rithuals-feature img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+.rithuals-feature figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 42px 24px 22px;
+  color: #fff4df;
+  font-family: Georgia, serif;
+  font-size: clamp(25px, 3vw, 40px);
+  font-weight: 800;
+  background: linear-gradient(transparent, rgba(12,7,4,.9));
 }
 .capture-show {
   position: relative;
@@ -209,6 +268,13 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .contest-teaser-grid { grid-template-columns: 1fr; gap: 15px; text-align: center; }
   .contest-number { font-size: 150px; }
   .contest-actions { justify-content: center; }
+  .contest-teaser .eyebrow { font-size: 17px; line-height: 1.25; }
+  .rithuals-head { margin-bottom: 28px; text-align: center; }
+  .rithuals-head h2 { font-size: clamp(54px, 17vw, 78px); }
+  .rithuals-solo img { border-width: 4px; border-radius: 16px; }
+  .rithuals-gallery { grid-template-columns: 1fr; gap: 12px; }
+  .rithuals-feature { margin-top: 36px; grid-template-columns: 1fr; gap: 14px; }
+  .rithuals-feature img { aspect-ratio: 4 / 5; }
   .feature-show, .feature-photos { min-height: 460px; }
   .capture-show, .capture-copy { min-height: 520px; }
   .capture-show::after { background: linear-gradient(0deg, rgba(12,7,4,.9) 0%, rgba(12,7,4,.15) 68%, transparent 100%); }
