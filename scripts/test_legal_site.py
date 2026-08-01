@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Prueba local de legal, privacidad, consentimiento y móvil."""
 from pathlib import Path
+import os
 from playwright.sync_api import sync_playwright
 
-BASE = "http://127.0.0.1:8765"
+BASE = os.environ.get("BASE_URL", "http://127.0.0.1:8765").rstrip("/")
 OUT = Path("test-artifacts")
 OUT.mkdir(exist_ok=True)
 
