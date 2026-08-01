@@ -83,6 +83,8 @@ h2 { margin: 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spa
 .feature-photo-detail { right: 0; bottom: 7%; width: 42%; height: 45%; border: 5px solid #d49b3f; }
 .feature-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(45px, 7vw, 100px); background: radial-gradient(circle at left, #351914, #0c0806 70%); }
 .feature-copy h2 { margin-bottom: 0; color: var(--gold); font-size: clamp(48px, 7vw, 102px); line-height: .92; }
+.feature-thumbs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 30px; }
+.feature-thumbs img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid rgba(212,155,63,.45); border-radius: 8px; box-shadow: 0 12px 28px rgba(0,0,0,.32); }
 
 .schedule-section { padding: 92px 0 105px; color: #f8edd9; background: var(--ink); }
 .section-head { margin-bottom: 34px; }
@@ -159,6 +161,7 @@ footer { padding: 32px 0; color: #c9b89e; background: #0c0907; }
   .feature-photo-main { inset: 0; }
   .feature-photo-detail { right: 5%; bottom: 5%; width: 45%; height: 38%; }
   .feature-copy { min-height: 220px; padding: 55px 28px; }
+  .feature-thumbs { gap: 8px; margin-top: 24px; }
   .schedule-section, .places { padding: 70px 0; }
   .tabs { width: 100%; }
   .tab { padding: 13px 7px; font-size: 12px; }
