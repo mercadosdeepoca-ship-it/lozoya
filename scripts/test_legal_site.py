@@ -22,6 +22,13 @@ with sync_playwright() as p:
 
     page.goto(f"{BASE}/index.html", wait_until="networkidle")
     assert page.locator(".cookie-banner").is_visible()
+    assert page.locator("#demonium h2").inner_text() == "Demonium"
+    assert page.locator("#jorobado-no-me-dan h2").inner_text() == "El jorobado de No-me-dan"
+    assert page.locator("#jorobado-no-me-dan img").get_attribute("src") == "assets/jorobado-no-me-dan.jpg"
+    assert page.locator("#marioneta-viva h2").inner_text() == "La marioneta viva"
+    assert page.locator("#marioneta-viva img").get_attribute("src") == "assets/marioneta-viva.jpg"
+    assert page.locator("a[href='#demonium']").is_visible()
+    assert page.locator("#il-diabole").count() == 0
     assert page.locator("iframe[data-map-src]").get_attribute("src") is None
     assert not any("google.com/maps?q=" in url for url in external), external
     assert not any("fonts.googleapis.com" in url or "fonts.gstatic.com" in url for url in external), external
@@ -54,6 +61,12 @@ with sync_playwright() as p:
 
     mpage.goto(f"{BASE}/concurso.html#participa", wait_until="networkidle")
     assert mpage.locator(".privacy-summary").is_visible()
+    contact = mpage.locator(".contact-email a")
+    assert contact.inner_text() == "degladis.serviciostematicos@gmail.com"
+    assert contact.get_attribute("href") == "mailto:degladis.serviciostematicos@gmail.com"
+    poster = mpage.locator(".poster-download")
+    assert poster.get_attribute("href") == "assets/concurso-cinco-miradas.jpg"
+    assert poster.get_attribute("download") == "Cartel-Cinco-miradas-al-Medievo.jpg"
     assert "no transmite ni almacena" in mpage.locator(".pending-note").inner_text()
     assert mpage.locator("input[name=legal_acceptance]").is_visible()
     assert no_horizontal_overflow(mpage)
