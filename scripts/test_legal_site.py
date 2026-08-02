@@ -67,6 +67,11 @@ with sync_playwright() as p:
     poster = mpage.locator(".poster-download")
     assert poster.get_attribute("href") == "assets/concurso-cinco-miradas.jpg"
     assert poster.get_attribute("download") == "Cartel-Cinco-miradas-al-Medievo.jpg"
+    mpage.locator(".poster-zoom").click()
+    assert mpage.locator("#poster-lightbox").evaluate("dialog => dialog.open")
+    assert mpage.locator("#poster-lightbox img").is_visible()
+    mpage.locator(".poster-lightbox-close").click()
+    assert not mpage.locator("#poster-lightbox").evaluate("dialog => dialog.open")
     assert "no transmite ni almacena" in mpage.locator(".pending-note").inner_text()
     assert mpage.locator("input[name=legal_acceptance]").is_visible()
     assert no_horizontal_overflow(mpage)

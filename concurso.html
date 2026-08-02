@@ -27,10 +27,11 @@
       </div>
     </div>
     <figure class="hero-poster">
-      <a class="poster-download" href="assets/concurso-cinco-miradas.jpg" download="Cartel-Cinco-miradas-al-Medievo.jpg" title="Descargar cartel del concurso">
+      <button class="poster-zoom" type="button" aria-haspopup="dialog" aria-controls="poster-lightbox" title="Ampliar cartel del concurso">
         <img src="assets/concurso-cinco-miradas.jpg?v=2" alt="Cartel del I Concurso Fotográfico Cinco miradas al Medievo">
-        <span>Descargar cartel ↓</span>
-      </a>
+        <span>Ampliar cartel ⤢</span>
+      </button>
+      <a class="poster-download" href="assets/concurso-cinco-miradas.jpg" download="Cartel-Cinco-miradas-al-Medievo.jpg">Descargar cartel ↓</a>
     </figure>
   </div>
 </header>
@@ -136,6 +137,10 @@
     </div>
   </section>
 </main>
+<dialog class="poster-lightbox" id="poster-lightbox" aria-label="Cartel ampliado del concurso">
+  <button class="poster-lightbox-close" type="button" aria-label="Cerrar cartel ampliado">×</button>
+  <img src="assets/concurso-cinco-miradas.jpg?v=2" alt="Cartel ampliado del I Concurso Fotográfico Cinco miradas al Medievo">
+</dialog>
 <footer><div class="wrap contest-footer"><div><strong>XXIV FERIA MEDIEVAL</strong><span>Buitrago del Lozoya · 3–6 septiembre 2026</span></div><nav aria-label="Enlaces legales"><a href="legal.html#aviso-legal">Aviso legal</a><a href="legal.html#privacidad">Privacidad</a><a href="legal.html#cookies">Cookies</a><button type="button" data-cookie-settings>Configurar cookies</button></nav></div></footer>
 <script src="privacy.js"></script>
 <script src="concurso.js"></script>

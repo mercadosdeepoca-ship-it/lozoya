@@ -7,6 +7,15 @@ const formStatus = document.querySelector('#form-status');
 const bases = document.querySelector('#bases');
 const openBases = document.querySelector('#open-bases');
 const categoryInputs = [...document.querySelectorAll('[data-category]')];
+const posterZoom = document.querySelector('.poster-zoom');
+const posterLightbox = document.querySelector('#poster-lightbox');
+const posterLightboxClose = document.querySelector('.poster-lightbox-close');
+
+posterZoom.addEventListener('click', () => posterLightbox.showModal());
+posterLightboxClose.addEventListener('click', () => posterLightbox.close());
+posterLightbox.addEventListener('click', event => {
+  if (event.target === posterLightbox) posterLightbox.close();
+});
 
 function setMethod(method) {
   const upload = method === 'upload';
