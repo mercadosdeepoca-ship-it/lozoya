@@ -6,6 +6,9 @@
   <meta name="theme-color" content="#17110c">
   <meta name="description" content="Cuenta atrás y programación de la XXIV Feria Medieval de Buitrago del Lozoya, del 3 al 6 de septiembre de 2026.">
   <title>XXIV Feria Medieval · Buitrago del Lozoya</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="privacy.css">
 </head>
@@ -41,7 +44,10 @@
           <p class="opening">Jueves 3 · 18:00 h</p>
         </section>
 
-        <a class="button" href="#programa">Ver programación</a>
+        <div class="hero-actions">
+          <a class="button" href="#programa">Ver programación</a>
+          <button class="button install-app" id="install-app" type="button">Instalar app</button>
+        </div>
       </div>
 
       <figure class="poster-frame">
@@ -260,6 +266,17 @@
       </nav>
     </div>
   </footer>
+
+  <dialog class="install-help" id="install-help" aria-labelledby="install-help-title">
+    <div class="install-help-card">
+      <button class="install-help-close" type="button" aria-label="Cerrar">×</button>
+      <img src="assets/icons/icon-192.png" alt="" width="72" height="72">
+      <h2 id="install-help-title">Instalar Buitrago Medieval</h2>
+      <p class="install-help-ios"><strong>En iPhone:</strong> pulsa Compartir <span aria-hidden="true">□↑</span> y después “Añadir a pantalla de inicio”.</p>
+      <p class="install-help-other"><strong>En tu navegador:</strong> abre el menú y elige “Instalar aplicación” o “Añadir a pantalla de inicio”.</p>
+      <button class="button install-help-ok" type="button">Entendido</button>
+    </div>
+  </dialog>
 
   <script src="privacy.js"></script>
   <script src="app.js"></script>

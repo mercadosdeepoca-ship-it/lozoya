@@ -61,6 +61,19 @@ h1 em { color: var(--gold); font-style: normal; }
 .opening { margin: 14px 0 0; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .button { display: inline-flex; align-items: center; justify-content: center; margin-top: 26px; padding: 15px 22px; border: 1px solid var(--gold); color: #fff8e8; background: transparent; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; cursor: pointer; transition: .2s ease; }
 .button:hover { background: var(--gold); color: var(--ink); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.install-app { color: var(--ink); background: var(--gold); }
+.install-app:hover { color: #fff8e8; background: var(--red); border-color: var(--red); }
+.install-help { width: min(92vw, 460px); padding: 0; border: 1px solid var(--gold); border-radius: 20px; color: var(--ink); background: var(--paper); box-shadow: 0 30px 90px rgba(0,0,0,.65); }
+.install-help::backdrop { background: rgba(8,5,3,.82); backdrop-filter: blur(5px); }
+.install-help-card { position: relative; padding: 32px; text-align: center; }
+.install-help-card img { margin: 0 auto 18px; border-radius: 16px; }
+.install-help-card h2 { font-size: 28px; }
+.install-help-card p { color: #6f5d4c; line-height: 1.65; }
+.install-help-close { position: absolute; top: 10px; right: 10px; width: 42px; height: 42px; padding: 0; border: 0; border-radius: 50%; color: #fff; background: var(--red); font-size: 28px; cursor: pointer; }
+.install-help-ok { margin-top: 10px; color: #fff; background: var(--red); border-color: var(--red); }
+.install-help [hidden] { display: none !important; }
+@media (display-mode: standalone) { .install-app { display: none; } }
 .poster-frame { margin: 0; transform: rotate(1.5deg); box-shadow: 0 26px 70px rgba(0,0,0,.55); border: 8px solid rgba(241,231,207,.93); }
 .poster-frame img { width: 100%; }
 
@@ -278,6 +291,7 @@ body.lightbox-open { overflow: hidden; }
   .brand { font-size: 12px; }
   .hero-grid { grid-template-columns: 1fr; padding: 58px 0; }
   .hero-copy { text-align: center; }
+  .hero-actions { justify-content: center; }
   .lead { font-size: 15px; }
   .countdown-panel { padding: 18px 12px; }
   .countdown strong { font-size: 34px; }

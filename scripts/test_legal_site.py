@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
 """Prueba local de legal, privacidad, consentimiento y móvil."""
 from pathlib import Path
+import json
 import os
+from PIL import Image
 from playwright.sync_api import sync_playwright
 
 BASE = os.environ.get("BASE_URL", "http://127.0.0.1:8765").rstrip("/")
 OUT = Path("test-artifacts")
 OUT.mkdir(exist_ok=True)
+
+manifest = json.loads(Path("manifest.webmanifest").read_text(encoding="utf-8"))
+assert manifest["display"] == "standalone"
+assert manifest["start_url"].startswith("/")
+for size in (192, 512):
+    icon = Image.open(f"assets/icons/icon-{size}.png")
+    assert icon.size == (size, size)
 
 
 def no_horizontal_overflow(page):
@@ -21,6 +30,19 @@ with sync_playwright() as p:
     page.on("request", lambda request: external.append(request.url) if not request.url.startswith(BASE) else None)
 
     page.goto(f"{BASE}/index.html", wait_until="networkidle")
+    assert page.locator("link[rel='manifest']").get_attribute("href") == "manifest.webmanifest"
+    assert page.locator("#install-app").is_visible()
+    page.locator("#install-app").click()
+    assert page.locator("#install-help").evaluate("dialog => dialog.open")
+    page.locator(".install-help-ok").click()
+    assert not page.locator("#install-help").evaluate("dialog => dialog.open")
+    assert page.evaluate("navigator.serviceWorker.ready.then(reg => reg.active.scriptURL.endsWith('/sw.js'))")
+    page.reload(wait_until="networkidle")
+    context.set_offline(True)
+    page.goto(f"{BASE}/index.html", wait_until="domcontentloaded")
+    assert page.locator("h1").is_visible()
+    context.set_offline(False)
+    page.reload(wait_until="networkidle")
     assert page.locator(".cookie-banner").is_visible()
     assert page.locator("#demonium h2").inner_text() == "Demonium"
     assert page.locator("#jorobado-no-me-dan h2").inner_text() == "El jorobado de No-me-dan"
@@ -105,7 +127,20 @@ with sync_playwright() as p:
     assert no_horizontal_overflow(mpage)
 
     mobile.close()
+
+    ios = browser.new_context(
+        viewport={"width": 390, "height": 844},
+        user_agent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1",
+    )
+    iphone = ios.new_page()
+    iphone.goto(f"{BASE}/index.html", wait_until="networkidle")
+    iphone.locator("#install-app").click()
+    assert iphone.locator(".install-help-ios").is_visible()
+    assert not iphone.locator(".install-help-other").is_visible()
+    assert no_horizontal_overflow(iphone)
+    ios.close()
+
     context.close()
     browser.close()
 
-print("OK: legal, consentimiento, formulario y vistas 1280/360 verificados")
+print("OK: PWA, offline, iPhone, legal, formulario y vistas 1280/360 verificados")

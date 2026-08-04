@@ -172,3 +172,47 @@ if (zoomablePhotos.length) {
     if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
   });
 }
+
+const installButton = document.querySelector('#install-app');
+const installHelp = document.querySelector('#install-help');
+let installPrompt = null;
+
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+
+if (isStandalone) installButton.hidden = true;
+
+window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault();
+  installPrompt = event;
+});
+
+installButton.addEventListener('click', async () => {
+  if (installPrompt) {
+    installPrompt.prompt();
+    const choice = await installPrompt.userChoice;
+    installPrompt = null;
+    if (choice.outcome === 'accepted') installButton.hidden = true;
+    return;
+  }
+
+  installHelp.querySelector('.install-help-ios').hidden = !isIOS;
+  installHelp.querySelector('.install-help-other').hidden = isIOS;
+  installHelp.showModal();
+});
+
+installHelp.querySelectorAll('.install-help-close, .install-help-ok').forEach(button => {
+  button.addEventListener('click', () => installHelp.close());
+});
+installHelp.addEventListener('click', event => {
+  if (event.target === installHelp) installHelp.close();
+});
+
+window.addEventListener('appinstalled', () => {
+  installPrompt = null;
+  installButton.hidden = true;
+});
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+}
