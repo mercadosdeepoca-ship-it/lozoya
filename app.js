@@ -179,8 +179,10 @@ let installPrompt = null;
 
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+const isSamsungInternet = /SamsungBrowser/i.test(window.navigator.userAgent);
 
 if (isStandalone) installButton.hidden = true;
+if (isSamsungInternet) installButton.textContent = 'Abrir en Chrome para instalar';
 
 window.addEventListener('beforeinstallprompt', event => {
   event.preventDefault();
@@ -188,7 +190,7 @@ window.addEventListener('beforeinstallprompt', event => {
 });
 
 installButton.addEventListener('click', async () => {
-  if (installPrompt) {
+  if (installPrompt && !isSamsungInternet) {
     installPrompt.prompt();
     const choice = await installPrompt.userChoice;
     installPrompt = null;
@@ -197,7 +199,9 @@ installButton.addEventListener('click', async () => {
   }
 
   installHelp.querySelector('.install-help-ios').hidden = !isIOS;
-  installHelp.querySelector('.install-help-other').hidden = isIOS;
+  installHelp.querySelector('.install-help-samsung').hidden = !isSamsungInternet;
+  installHelp.querySelector('.install-help-other').hidden = isIOS || isSamsungInternet;
+  installHelp.querySelector('.install-help-chrome').hidden = !isSamsungInternet;
   installHelp.showModal();
 });
 

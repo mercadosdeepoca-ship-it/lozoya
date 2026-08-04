@@ -140,7 +140,23 @@ with sync_playwright() as p:
     assert no_horizontal_overflow(iphone)
     ios.close()
 
+    samsung = browser.new_context(
+        viewport={"width": 360, "height": 800},
+        user_agent="Mozilla/5.0 (Linux; Android 14; SM-S921B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/26.0 Chrome/122.0 Mobile Safari/537.36",
+    )
+    samsung_page = samsung.new_page()
+    samsung_page.goto(f"{BASE}/index.html", wait_until="networkidle")
+    assert samsung_page.locator("#install-app").inner_text() == "ABRIR EN CHROME PARA INSTALAR"
+    samsung_page.locator("#install-app").click()
+    assert samsung_page.locator(".install-help-samsung").is_visible()
+    assert samsung_page.locator(".install-help-chrome").is_visible()
+    assert samsung_page.locator(".install-help-chrome").get_attribute("href").startswith("intent://")
+    assert not samsung_page.locator(".install-help-other").is_visible()
+    assert no_horizontal_overflow(samsung_page)
+    samsung_page.screenshot(path=str(OUT / "instalacion-samsung-movil.png"), full_page=False)
+    samsung.close()
+
     context.close()
     browser.close()
 
-print("OK: PWA, offline, iPhone, legal, formulario y vistas 1280/360 verificados")
+print("OK: PWA, offline, iPhone, Samsung/Chrome, legal, formulario y vistas 1280/360 verificados")

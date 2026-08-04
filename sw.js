@@ -1,4 +1,4 @@
-const CACHE = 'buitrago-medieval-v1';
+const CACHE = 'buitrago-medieval-v2';
 const APP_SHELL = [
   '/',
   '/index.html',
