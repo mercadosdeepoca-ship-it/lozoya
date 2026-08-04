@@ -297,8 +297,10 @@ body.lightbox-open { overflow: hidden; }
   .rithuals-feature { margin-top: 36px; grid-template-columns: 1fr; gap: 14px; }
   .rithuals-feature img { aspect-ratio: 4 / 5; }
   .galata-show { grid-template-columns: 1fr; min-height: 0; }
+  .galata-copy, .galata-photo { min-width: 0; }
   .galata-copy { min-height: 230px; padding: 55px 28px 42px; text-align: center; }
   .galata-copy h2 { font-size: clamp(62px, 21vw, 90px); }
+  #raebellion-title { font-size: clamp(46px, 14vw, 60px); }
   .galata-photo { min-height: 0; }
   .galata-photo img { height: auto; max-height: none; }
   .capture-show { padding: 65px 0; }

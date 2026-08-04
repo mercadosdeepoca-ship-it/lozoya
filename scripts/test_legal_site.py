@@ -54,11 +54,13 @@ with sync_playwright() as p:
     assert no_horizontal_overflow(page)
     page.screenshot(path=str(OUT / "legal-escritorio.png"), full_page=True)
 
-    mobile = browser.new_context(viewport={"width": 390, "height": 844})
+    mobile = browser.new_context(viewport={"width": 360, "height": 800})
     mpage = mobile.new_page()
     mpage.goto(f"{BASE}/index.html#como-llegar", wait_until="networkidle")
     assert mpage.locator("[data-map-placeholder]").is_visible()
     assert not mpage.locator("iframe[data-map-src]").is_visible()
+    assert no_horizontal_overflow(mpage)
+    assert mpage.locator("#raebellion-title").bounding_box()["x"] + mpage.locator("#raebellion-title").bounding_box()["width"] <= 360
     directions_bottom = mpage.locator("#como-llegar").bounding_box()["y"] + mpage.locator("#como-llegar").bounding_box()["height"]
     contest_top = mpage.locator("#concurso").bounding_box()["y"]
     assert contest_top >= directions_bottom - 1, (directions_bottom, contest_top)
@@ -106,4 +108,4 @@ with sync_playwright() as p:
     context.close()
     browser.close()
 
-print("OK: legal, consentimiento, formulario y vistas 1280/390 verificados")
+print("OK: legal, consentimiento, formulario y vistas 1280/360 verificados")
