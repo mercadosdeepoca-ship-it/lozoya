@@ -30,6 +30,7 @@ with sync_playwright() as p:
     assert page.locator("a[href='#demonium']").is_visible()
     assert page.locator("#il-diabole").count() == 0
     assert page.locator("iframe[data-map-src]").get_attribute("src") is None
+    assert not page.locator("iframe[data-map-src]").is_visible()
     assert not any("google.com/maps?q=" in url for url in external), external
     assert not any("fonts.googleapis.com" in url or "fonts.gstatic.com" in url for url in external), external
     assert page.locator("[data-map-placeholder]").is_visible()
@@ -41,6 +42,8 @@ with sync_playwright() as p:
     page.locator("[data-cookie-accept]").click()
     page.wait_for_selector("iframe[data-map-src]:not([hidden])")
     assert "google.com/maps" in page.locator("iframe[data-map-src]").get_attribute("src")
+    assert page.locator("iframe[data-map-src]").is_visible()
+    assert not page.locator("[data-map-placeholder]").is_visible()
     page.screenshot(path=str(OUT / "inicio-legal-escritorio.png"), full_page=True)
 
     page.goto(f"{BASE}/legal.html", wait_until="networkidle")
@@ -53,6 +56,14 @@ with sync_playwright() as p:
 
     mobile = browser.new_context(viewport={"width": 390, "height": 844})
     mpage = mobile.new_page()
+    mpage.goto(f"{BASE}/index.html#como-llegar", wait_until="networkidle")
+    assert mpage.locator("[data-map-placeholder]").is_visible()
+    assert not mpage.locator("iframe[data-map-src]").is_visible()
+    directions_bottom = mpage.locator("#como-llegar").bounding_box()["y"] + mpage.locator("#como-llegar").bounding_box()["height"]
+    contest_top = mpage.locator("#concurso").bounding_box()["y"]
+    assert contest_top >= directions_bottom - 1, (directions_bottom, contest_top)
+    mpage.screenshot(path=str(OUT / "inicio-mapa-movil.png"), full_page=True)
+
     mpage.goto(f"{BASE}/legal.html", wait_until="networkidle")
     assert mpage.locator(".cookie-banner").is_visible()
     assert no_horizontal_overflow(mpage)
